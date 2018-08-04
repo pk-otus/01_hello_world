@@ -8,7 +8,7 @@ endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-configure_file(version.h.in version.h)
+configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 add_executable(HelloWorld_cli main.cpp)
 
@@ -16,11 +16,19 @@ add_library(HelloWorld lib.cpp)
 
 add_executable(test_main_cli test_main.cpp)
 
-set_target_properties(HelloWorld_cli test_main_cli PROPERTIES
-  CXX_STANDARD 14
-  CXX_STANDARD_REQUIRED ON
-  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
-)
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	set_target_properties(HelloWorld_cli test_main_cli PROPERTIES
+		CXX_STANDARD 14
+		CXX_STANDARD_REQUIRED ON
+		COMPILE_OPTIONS -W3 
+	)
+else()
+	set_target_properties(HelloWorld_cli test_main_cli PROPERTIES
+		CXX_STANDARD 14
+		CXX_STANDARD_REQUIRED ON
+		COMPILE_OPTIONS -Wpedantic -Wall -Wextra
+	)
+endif()
 
 set_target_properties(test_main_cli PROPERTIES
   COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
