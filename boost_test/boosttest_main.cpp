@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "../VersionControl/version_control.h"
 
 #define BOOST_TEST_MODULE test_main
 
@@ -6,9 +6,9 @@
 
 BOOST_AUTO_TEST_SUITE(test_suite_main)
 
-BOOST_AUTO_TEST_CASE(test_version_valid)
+BOOST_AUTO_TEST_CASE(boost_version_valid)
 {
-	BOOST_CHECK( version() > 0 );
+	BOOST_CHECK(VersionControl::GetVersion() > 0 );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
