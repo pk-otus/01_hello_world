@@ -16,4 +16,6 @@ set_target_properties(boosttest_main_cli PROPERTIES
 
 target_link_libraries(boosttest_main_cli version_control ${Boost_LIBRARIES} )
 
-add_test(boost_version_valid boosttest_main_cli)
+add_test(
+	NAME boost_version_valid 
+	COMMAND boosttest_main_cli)
