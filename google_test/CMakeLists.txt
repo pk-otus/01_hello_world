@@ -13,7 +13,7 @@ set_target_properties(googletest_main_cli PROPERTIES
 INCLUDE_DIRECTORIES ${GTEST_INCLUDE_DIRS}
 )
 
-target_link_libraries(googletest_main_cli version_control ${GTEST_LIBRARIES})
+target_link_libraries(googletest_main_cli version_control ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	target_link_libraries(googletest_main_cli pthread)
